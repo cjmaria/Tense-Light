@@ -1,11 +1,11 @@
-package com.jahnelgroup.tenselite
+package com.jahnelgroup.tenselight
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class TenseLiteApplication
+class TenseLightApplication
 
 fun main(args: Array<String>) {
-	runApplication<TenseLiteApplication>(*args)
+  runApplication<TenseLightApplication>(*args)
 }
