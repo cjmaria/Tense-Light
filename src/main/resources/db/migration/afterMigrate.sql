@@ -1,6 +1,7 @@
 USE tenselight;
 
-TRUNCATE TABLE users;
+DELETE FROM users;
+ALTER TABLE users AUTO_INCREMENT = 1;
 
 INSERT INTO users(firstname, lastname, email, type, isactive)
 VALUES
