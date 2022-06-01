@@ -26,7 +26,7 @@ allOpen {
   annotation("javax.persistence.MappedSuperclass")
 }
 
-group = "com.jahnelgroup.tense-lite"
+group = "com.jahnelgroup.tenselight"
 version = "0.0.1-SNAPSHOT"
 java.sourceCompatibility = JavaVersion.VERSION_11
 
@@ -62,7 +62,7 @@ tasks.withType<Test> {
 }
 
 flyway {
-  url = "jdbc:mysql://127.0.0.1:3306/tense-lite?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC"
+  url = "jdbc:mysql://127.0.0.1:3306/tenselight?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC"
   user = "root"
   password = "rootpassword"
   locations = arrayOf("filesystem:src/main/resources/db/migration")

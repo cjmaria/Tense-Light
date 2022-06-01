@@ -1,1 +1,1 @@
-rootProject.name = "tense-lite"
+rootProject.name = "tenselight"
