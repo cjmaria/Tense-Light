@@ -18,15 +18,28 @@ class User {
     var id: Long = 0L
 
     @Column(name = "firstname")
-    var firstName = ""
+    var firstName: String = ""
 
     @Column(name = "lastname")
-    var lastName = ""
+    var lastName: String = ""
 
     @Column(name = "email")
-    var email = ""
+    var email: String = ""
 
     @Column(name = "isactive")
-    var isactive: Boolean = true
+    var isActive: Boolean = true
 
+    @Column(name = "type")
+    var type: Int = 1
+
+    fun hasIncompleteFields(): Boolean {
+        return (
+            id == null ||
+            firstName.isNullOrEmpty() ||
+            lastName.isNullOrEmpty() ||
+            email.isNullOrEmpty() ||
+            isActive == null ||
+            type == null
+        )
+    }
 }
