@@ -15,7 +15,7 @@ class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var id: Long = 0L
+    var id: Long? = null
 
     @Column(name = "firstname")
     var firstName: String = ""
@@ -33,13 +33,6 @@ class User {
     var type: Int = 1
 
     fun hasIncompleteFields(): Boolean {
-        return (
-            id == null ||
-            firstName.isNullOrEmpty() ||
-            lastName.isNullOrEmpty() ||
-            email.isNullOrEmpty() ||
-            isActive == null ||
-            type == null
-        )
+        return (firstName.isEmpty() || lastName.isEmpty() || email.isEmpty())
     }
 }

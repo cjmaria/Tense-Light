@@ -23,13 +23,10 @@ class UserController(
         return userService.findAll()
     }
     @GetMapping("/users/{id}")
-    fun findUser(@PathVariable id: Long): ResponseEntity<Optional<User>> {
-        val userResult: Optional<User> = userService.findById(id)
-
-        if (userResult.isEmpty) {
-            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(userResult)
-        }
-        return ResponseEntity.status(HttpStatus.OK).body(userResult)
+    fun findUser(@PathVariable id: Long): ResponseEntity<User>? {
+        return userService.findById(id)
+            .map { foundUser -> ResponseEntity.status(HttpStatus.OK).body(foundUser) }
+            .orElse(ResponseEntity.status(HttpStatus.NOT_FOUND).build())
     }
 
     @PostMapping(
@@ -37,13 +34,11 @@ class UserController(
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun createUser(@RequestBody user: User): ResponseEntity<Optional<User>> {
-        /* Ensure user has required fields */
+    fun createUser(@RequestBody user: User): ResponseEntity<Any> {
         if (user.hasIncompleteFields()) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Optional.of(user))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(("User has incomplete fields"))
         }
-        val userResult: Optional<User> = Optional.of(userService.createUser(user))
-        return ResponseEntity.status(HttpStatus.OK).body(userResult)
+        return ResponseEntity.status(HttpStatus.CREATED).body(userService.createUser(user))
     }
 
     @PatchMapping(
@@ -51,13 +46,14 @@ class UserController(
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
-    fun editUser(@PathVariable id: Long, @RequestBody user: User): ResponseEntity<Optional<User>> {
-        /* Edits a user based on a user JSON which must include all complete fields
-           and have a valid user id */
+    fun editUser(@PathVariable id: Long, @RequestBody user: User): ResponseEntity<Any> {
         if (user.hasIncompleteFields() || id != user.id) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Optional.of(user))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("User has incomplete fields or id mismatch")
         }
-        return ResponseEntity.status(HttpStatus.OK).body(userService.editUser(user))
+        if (user.id?.let { userService.findById(it).isEmpty } == true) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found")
+        }
+        return ResponseEntity.status(HttpStatus.OK).body(userService.editUser(user).get())
     }
 
     @DeleteMapping(
