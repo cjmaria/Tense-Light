@@ -11,18 +11,19 @@ import org.springframework.web.bind.annotation.PatchMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
+import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
-import java.util.*
 
 @RestController
+@RequestMapping("/users")
 class UserController(
     val userService: UserService
 ) {
-    @GetMapping("/users")
+    @GetMapping
     fun findAll(): List<User> {
         return userService.findAll()
     }
-    @GetMapping("/users/{id}")
+    @GetMapping("/{id}")
     fun findUser(@PathVariable id: Long): ResponseEntity<User>? {
         return userService.findById(id)
             .map { foundUser -> ResponseEntity.status(HttpStatus.OK).body(foundUser) }
@@ -30,7 +31,6 @@ class UserController(
     }
 
     @PostMapping(
-        path = ["/users"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
@@ -42,7 +42,7 @@ class UserController(
     }
 
     @PatchMapping(
-        path = ["/users/{id}"],
+        path = ["/{id}"],
         consumes = [MediaType.APPLICATION_JSON_VALUE],
         produces = [MediaType.APPLICATION_JSON_VALUE]
     )
@@ -57,7 +57,7 @@ class UserController(
     }
 
     @DeleteMapping(
-        path = ["/users/{id}"],
+        path = ["/{id}"],
         produces = [MediaType.TEXT_PLAIN_VALUE]
     )
     fun deleteUser(@PathVariable id: Long): ResponseEntity<String> {
