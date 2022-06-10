@@ -64,6 +64,6 @@ class UserController(
         if (userService.deleteUser(id)) {
             return ResponseEntity.status(HttpStatus.OK).body("Delete successful.")
         }
-        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Delete failed.")
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Delete failed.")
     }
 }
