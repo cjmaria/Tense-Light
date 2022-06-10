@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class TenseLightApplication
 
 fun main(args: Array<String>) {
-  runApplication<TenseLightApplication>(*args)
+    runApplication<TenseLightApplication>(*args)
 }
