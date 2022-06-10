@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "firstName": "Chris",
+    "lastName": "Maria",
+    "email": "cmaria@jahnelgroup.com",
+    "isActive": true,
+    "type": 0
+  },
+  {
+    "id": 2,
+    "firstName": "Rida",
+    "lastName": "Rahman",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 3,
+    "firstName": "Will",
+    "lastName": "Bacon",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 4,
+    "firstName": "Chris",
+    "lastName": "Carbone",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 5,
+    "firstName": "Chris",
+    "lastName": "Vanderloo",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 6,
+    "firstName": "Sean",
+    "lastName": "Watson",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 7,
+    "firstName": "Megan",
+    "lastName": "TheeStreamer",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  },
+  {
+    "id": 8,
+    "firstName": "Gregory",
+    "lastName": "Siemers",
+    "email": "email@example.com",
+    "isActive": true,
+    "type": 1
+  }
+]
